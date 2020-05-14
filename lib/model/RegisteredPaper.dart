@@ -1,11 +1,17 @@
 class RegisteredPaper {
-
   String semester;
-  String paperName;
+  List<String> paperName;
 
   RegisteredPaper({this.semester, this.paperName});
+
+  RegisteredPaper.fromMap(Map<String, dynamic> map) {
+    map.forEach((key, value) {
+      semester = key;
+      paperName = value;
+    });
+  }
 }
 
 abstract class RegisteredPaperRepository {
-  Future<List<RegisteredPaper>> fetchRegisteredPaper(String batch, String branch);
+  Future<List<RegisteredPaper>> fetchRegisteredPaper();
 }

@@ -2,18 +2,14 @@ import 'package:attendancesystem/model/RegisteredPaper.dart';
 
 class RegisteredPaperMockData extends RegisteredPaperRepository {
   @override
-  Future<List<RegisteredPaper>> fetchRegisteredPaper(
-      String batch, String branch) {
+  Future<List<RegisteredPaper>> fetchRegisteredPaper() {
     return Future.value(_registeredPaperList);
   }
 }
 
 var _registeredPaperList = <RegisteredPaper>[
-  RegisteredPaper(paperName: "DBMS", semester: "3"),
-  RegisteredPaper(paperName: "Math", semester: "3"),
-  RegisteredPaper(paperName: "Biology", semester: "3"),
-  RegisteredPaper(paperName: "Java", semester: "3"),
-  RegisteredPaper(paperName: "OS", semester: "4"),
-  RegisteredPaper(paperName: "Gentic", semester: "5"),
-  RegisteredPaper(paperName: "PSC", semester: "6"),
+  RegisteredPaper(semester: "3", paperName: ["Math", "Biology", "Java", "OS"]),
+  RegisteredPaper(semester: "4", paperName: ["Economics"]),
+  RegisteredPaper(semester: "5", paperName: ["DBMS"]),
+  RegisteredPaper(semester: "6", paperName: ["PSC"])
 ];

@@ -15,9 +15,9 @@ class AttendancePresenter {
     _repository = Injector().attendanceRepository;
   }
 
-  void loadAttendance(String batch, String branch) {
+  void loadAttendance() {
     _repository
-        .fetchAttendance(batch, branch)
+        .fetchAttendance()
         .then((value) => _viewContract.onLoadAttendance(value))
         .catchError((error) => _viewContract.onLoadException(error.toString()));
   }

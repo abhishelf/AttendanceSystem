@@ -15,9 +15,9 @@ class NotificationPresenter {
     _repository = Injector().notificationRepository;
   }
 
-  void loadNotification(String batch, String branch) {
+  void loadNotification() {
     _repository
-        .fetchNotification(batch, branch)
+        .fetchNotification()
         .then((value) => _viewContract.onLoadNotification(value))
         .catchError((error) => _viewContract.onLoadException(error.toString()));
   }

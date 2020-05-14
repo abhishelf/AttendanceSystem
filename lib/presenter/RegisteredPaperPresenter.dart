@@ -15,9 +15,9 @@ class RegisteredPaperPresenter {
     _repository = Injector().registeredPaperRepository;
   }
 
-  void loadRegisteredPaper(String batch, String branch) {
+  void loadRegisteredPaper() {
     _repository
-        .fetchRegisteredPaper(batch, branch)
+        .fetchRegisteredPaper()
         .then((value) => _viewContract.onLoadRegisteredPaper(value))
         .catchError((error) => _viewContract.onLoadException(error.toString()));
   }

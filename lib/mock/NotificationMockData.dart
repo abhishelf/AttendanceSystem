@@ -2,7 +2,7 @@ import 'package:attendancesystem/model/Notification.dart';
 
 class NotificationMockData extends NotificationRepository {
   @override
-  Future<List<Notification>> fetchNotification(String batch, String branch) {
+  Future<List<Notification>> fetchNotification() {
     return Future.value(_notificationList);
   }
 }

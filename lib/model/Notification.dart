@@ -7,5 +7,5 @@ class Notification {
 }
 
 abstract class NotificationRepository {
-  Future<List<Notification>> fetchNotification(String batch, String branch);
+  Future<List<Notification>> fetchNotification();
 }

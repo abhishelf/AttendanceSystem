@@ -2,7 +2,7 @@ import 'package:attendancesystem/model/Attendance.dart';
 
 class AttendanceMockData extends AttendanceRepository {
   @override
-  Future<List<Attendance>> fetchAttendance(String batch, String branch) {
+  Future<List<Attendance>> fetchAttendance() {
     return Future.value(_attendanceList);
   }
 }
