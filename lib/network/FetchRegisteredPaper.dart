@@ -20,7 +20,9 @@ class FetchRegisteredPaper extends RegisteredPaperRepository {
 
     await document.get().then((doc) {
       try {
-        registeredPaper.add(RegisteredPaper.fromMap(doc.data));
+        doc.data.forEach((key, value) {
+          registeredPaper.add(RegisteredPaper(semester: key, paperName: value));
+        });
       } catch (error) {
         throw FetchDataException(error);
       }

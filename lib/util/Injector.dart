@@ -1,9 +1,14 @@
 import 'package:attendancesystem/mock/AttendanceMockData.dart';
+import 'package:attendancesystem/mock/ClassTimingMockData.dart';
 import 'package:attendancesystem/mock/NotificationMockData.dart';
 import 'package:attendancesystem/mock/RegisteredPaperMockData.dart';
 import 'package:attendancesystem/model/Attendance.dart';
+import 'package:attendancesystem/model/ClassTiming.dart';
 import 'package:attendancesystem/model/Notification.dart';
 import 'package:attendancesystem/model/RegisteredPaper.dart';
+import 'package:attendancesystem/network/FetchAttendance.dart';
+import 'package:attendancesystem/network/FetchNotification.dart';
+import 'package:attendancesystem/network/FetchRegisteredPaper.dart';
 
 enum Flavor { MOCK, PROD }
 
@@ -30,8 +35,7 @@ class Injector {
       case Flavor.MOCK:
         return AttendanceMockData();
       default:
-        return null;
-      //TODO
+        return FetchAttendance();
     }
   }
 
@@ -40,8 +44,7 @@ class Injector {
       case Flavor.MOCK:
         return NotificationMockData();
       default:
-        return null;
-      //TODO
+        return FetchNotification();
     }
   }
 
@@ -50,8 +53,17 @@ class Injector {
       case Flavor.MOCK:
         return RegisteredPaperMockData();
       default:
+        return FetchRegisteredPaper();
+    }
+  }
+
+  ClassTimingRepository get classTimingRepository {
+    switch (_flavor) {
+      case Flavor.MOCK:
+        return ClassTimingMockData();
+      default:
+        //TODO
         return null;
-      //TODO
     }
   }
 }
