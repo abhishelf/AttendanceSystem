@@ -25,6 +25,17 @@ const String COLLECTION_QUERY = "query";
 const String DB_NOTIFICATION_DATE = "Date";
 const String DB_NOTIFICATION_TEXT = "Text";
 
+// WeekDay Name
+const List<String> DAY = [
+  'Mon',
+  'Tue',
+  'Wed',
+  'Thu',
+  'Fri',
+  'Sat',
+  'Sun',
+];
+
 //day: list[0],
 //startTime: list[1].replaceAll(":", ""),
 //endTime: list[2].replaceAll(":", ""),
