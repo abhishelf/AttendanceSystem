@@ -42,7 +42,7 @@ class FetchAttendance extends AttendanceRepository {
           ),
         );
       });
-    }).catchError((error) => throw FetchDataException(error));
+    }).catchError((error) => throw FetchDataException(error.toString()));
 
     return attendanceList;
   }

@@ -61,7 +61,7 @@ class DatabaseHelper {
       String day, String time) async {
     Database db = await this.database;
     var result = await db.rawQuery(
-        'Select * from $TABLE_NAME Where $COL_DAY = $day && $COL_START_TIME <= $time && $COL_END_TIME >= $time');
+        'Select * from $TABLE_NAME Where $COL_DAY = ? And $COL_START_TIME < ? And $COL_END_TIME > ?', [day,time,time]);
     return result;
   }
 

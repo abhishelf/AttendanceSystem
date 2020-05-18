@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> implements ClassTimingViewContrac
           .signIn(_emailController.text, _passwordController.text)
           .then((_userId) {
         if (_userId != null) {
-          _presenter.loadClassTiming();
+          _fetchProfile();
         } else {
           _showError();
         }
@@ -91,6 +91,24 @@ class _LoginPageState extends State<LoginPage> implements ClassTimingViewContrac
     );
   }
 
+  void _deleteTiming() async{
+    await _databaseHelper.deleteTiming();
+  }
+
+  void _fetchProfile(){
+    FireStoreOperation().fetchAndSaveProfile(_emailController.text).then((isSaved){
+      if(!isSaved){
+        Auth().signOut();
+        _showError();
+      }else{
+        _presenter.loadClassTiming();
+      }
+    }).catchError((_){
+      Auth().signOut();
+      _showError();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -100,6 +118,8 @@ class _LoginPageState extends State<LoginPage> implements ClassTimingViewContrac
     _registeredPaperPresenter = RegisteredPaperPresenter(this);
     _attendancePresenter = AttendancePresenter(this);
     _notificationPresenter = NotificationPresenter(this);
+
+    _deleteTiming();
   }
 
   @override
@@ -252,17 +272,7 @@ class _LoginPageState extends State<LoginPage> implements ClassTimingViewContrac
   @override
   void onLoadClassTiming(List<ClassTiming> classTiming) {
     _databaseHelper.insertTiming(classTiming).then((_){
-      FireStoreOperation().fetchAndSaveProfile(_emailController.text).then((isError){
-        if(isError){
-          Auth().signOut();
-          _showError();
-        }else{
-          _attendancePresenter.loadAttendance();
-        }
-      }).catchError((_){
-        Auth().signOut();
-        _showError();
-      });
+      _attendancePresenter.loadAttendance();
     }).catchError((_){
       Auth().signOut();
       _showError();
@@ -284,13 +294,6 @@ class _LoginPageState extends State<LoginPage> implements ClassTimingViewContrac
   @override
   void onLoadNotification(List<StudentNotification> notification) {
     _notification = notification;
-
-    //TODO REMOVE
-    print("hello Moto");
-    print(_attendance.length);
-    print(_registeredPaper.length);
-    print(_notification.length);
-
     MyNavigator.goToMainPage(
         context, _notification, _attendance, _registeredPaper);
   }

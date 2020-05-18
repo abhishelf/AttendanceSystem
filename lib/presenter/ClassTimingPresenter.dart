@@ -19,6 +19,9 @@ class ClassTimingPresenter {
     _repository
         .fetchClassTiming()
         .then((value) => _viewContract.onLoadClassTiming(value))
-        .catchError((error) => _viewContract.onLoadException(error));
+        .catchError((error){
+          print(error);
+          _viewContract.onLoadException(error.toString());
+    });
   }
 }

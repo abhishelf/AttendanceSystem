@@ -12,14 +12,14 @@ class FetchClassTiming extends ClassTimingRepository {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String batch = sharedPreferences.getString(KEY_BATCH);
     String branch = sharedPreferences.getString(KEY_BRANCH);
-    String myKey = branch + batch;
+    String myKey = branch+batch;
 
     var document =
-        Firestore.instance.collection(COLLECTION_ATTENDANCE).document(myKey);
+        Firestore.instance.collection(COLLECTION_TIMING).document(myKey);
 
     await document.get().then((doc) {
       doc.data.forEach((key, value) {
-        List<String> list = value.toString().split(",");
+        List<String> list = value.toString().replaceAll("[", "").replaceAll("]", "").split(",");
         classTiming.add(
           ClassTiming(
             paper: key,
@@ -31,7 +31,7 @@ class FetchClassTiming extends ClassTimingRepository {
           ),
         );
       });
-    }).catchError((error) => throw FetchDataException(error));
+    }).catchError((error) => throw FetchDataException(error.toString()));
 
     return classTiming;
   }

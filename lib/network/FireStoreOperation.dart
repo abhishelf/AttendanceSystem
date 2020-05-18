@@ -77,7 +77,7 @@ class FireStoreOperation implements FireStoreOperationInterface {
       prefs.setString(KEY_BRANCH, doc[DB_STUDENT_BRANCH]);
       prefs.setString(KEY_NAME, doc[DB_STUDENT_NAME]);
       List<String> temp = doc[DB_STUDENT_ROLL].toString().split("/");
-      prefs.setString(KEY_BATCH, temp[temp.length-1]);
+      prefs.setString(KEY_BATCH, "2K"+temp[temp.length-1]);
     }).catchError((_){
       isError = true;
     });

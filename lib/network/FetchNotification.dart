@@ -21,7 +21,7 @@ class FetchNotification extends NotificationRepository {
         .then((QuerySnapshot snapshot) {
       try {
         snapshot.documents.forEach((item) {
-          String notificationId = item.documentID.split("#")[0];
+          String notificationId = item.documentID.split(SPLIT_POINT)[0];
           if (equalIgnoreCase(notificationId, "all") ||
               equalIgnoreCase(notificationId, batch) ||
               equalIgnoreCase(notificationId, branch) ||
@@ -32,9 +32,9 @@ class FetchNotification extends NotificationRepository {
           }
         });
       } catch (error) {
-        throw FetchDataException(error);
+        throw FetchDataException(error.toString());
       }
-    }).catchError((error) => throw FetchDataException(error));
+    }).catchError((error) => throw FetchDataException(error.toString()));
 
     return notificationList;
   }

@@ -150,11 +150,6 @@ class _SplashPageState extends State<SplashPage>
   @override
   void onLoadNotification(List<StudentNotification> notification) {
     _notification = notification;
-
-    print(_attendance.length);
-    print(_registeredPaper.length);
-    print(_notification.length);
-
     if (_isTimerFinished) {
       MyNavigator.goToMainPage(
           context, _notification, _attendance, _registeredPaper);

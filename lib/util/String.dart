@@ -1,5 +1,7 @@
 const String APP_NAME = "Attendance System";
 
+const String SPLIT_POINT = "#";
+
 //View Text
 const String LOADING = "Please Wait";
 const String LOADING_REGISTERED_PAPER = "Getting Registered Papers";
@@ -8,14 +10,14 @@ const String LOADING_ATTENDANCE = "Fetching Your Attendance";
 const String LOADING_NOTIFICATION = "Retrieving Notification";
 const String TITLE_LOGIN = "Welcome\nback";
 const String SUBTITLE_LOGIN = "Sign in to continue";
-const String DO_NOT_HAVE_ACCOUNT = "Don't have an account?  ";
+const String DO_NOT_HAVE_ACCOUNT = "Don't have an account? ";
 const String CONTACT_YOUR_COLLEGE = "Contact College";
-
 const String HINT_EMAIL = "Enter Email";
 const String HINT_PASSWORD = "Enter Password";
 
 //Error
 const String ERROR_NETWORK = "Please Check Your Internet Connection";
+const String ERROR_FETCHING_DATA = "Error During Loading Data From Firebase";
 const String ERROR_EMAIL = "Please Check Your Email";
 const String ERROR_PASSWORD = "Password Not Valid";
 const String ERROR_LOGIN_FAILED = "Login Failed";
@@ -65,17 +67,3 @@ const List<String> DAY = [
   'Sat',
   'Sun',
 ];
-
-
-
-//day: list[0],
-//startTime: list[1].replaceAll(":", ""),
-//endTime: list[2].replaceAll(":", ""),
-//lat: list[3],
-//lon: list[4],
-// notification->IT2K16#943892742 -> Date & Text
-// attendance -> IT2K16 -> map<String,Array> -> (String: Array<String> )
-// registeredPapers -> IT2K16 -> String:Array
-// students -> email -> Branch, Name, Roll;
-// timing -> IT2k16 -> DBMS (Array -> )
-
