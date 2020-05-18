@@ -1,4 +1,4 @@
-import 'package:attendancesystem/model/Notification.dart';
+import 'package:attendancesystem/model/StudentNotification.dart';
 import 'package:attendancesystem/util/FetchDataException.dart';
 import 'package:attendancesystem/util/GlobalFunction.dart';
 import 'package:attendancesystem/util/String.dart';
@@ -7,8 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class FetchNotification extends NotificationRepository {
   @override
-  Future<List<Notification>> fetchNotification() async {
-    List<Notification> notificationList = List();
+  Future<List<StudentNotification>> fetchNotification() async {
+    List<StudentNotification> notificationList = List();
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String batch = sharedPreferences.getString(KEY_BATCH);
@@ -26,7 +26,7 @@ class FetchNotification extends NotificationRepository {
               equalIgnoreCase(notificationId, batch) ||
               equalIgnoreCase(notificationId, branch) ||
               equalIgnoreCase(notificationId, myKey)) {
-            notificationList.add(Notification(
+            notificationList.add(StudentNotification(
                 date: item.data[DB_NOTIFICATION_DATE],
                 text: item.data[DB_NOTIFICATION_TEXT]));
           }

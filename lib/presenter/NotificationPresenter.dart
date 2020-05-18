@@ -1,8 +1,8 @@
-import 'package:attendancesystem/model/Notification.dart';
+import 'package:attendancesystem/model/StudentNotification.dart';
 import 'package:attendancesystem/util/Injector.dart';
 
 abstract class NotificationViewContract {
-  void onLoadNotification(List<Notification> notification);
+  void onLoadNotification(List<StudentNotification> notification);
 
   void onLoadException(String error);
 }

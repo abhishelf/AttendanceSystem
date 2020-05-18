@@ -9,6 +9,8 @@ abstract class FireStoreOperationInterface {
   Future<bool> uploadQuery(String query, String rollNo);
 
   Future<bool> updateAttendance();
+
+  Future<bool> fetchAndSaveProfile(String email);
 }
 
 class FireStoreOperation implements FireStoreOperationInterface {
@@ -63,5 +65,23 @@ class FireStoreOperation implements FireStoreOperationInterface {
     }
 
     return true;
+  }
+
+  @override
+  Future<bool> fetchAndSaveProfile(String email) async{
+    var document =  Firestore.instance.collection(COLLECTION_STUDENT).document(email);
+    bool isError = false;
+    await document.get().then((doc) async{
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString(KEY_ROLL, doc[DB_STUDENT_ROLL]);
+      prefs.setString(KEY_BRANCH, doc[DB_STUDENT_BRANCH]);
+      prefs.setString(KEY_NAME, doc[DB_STUDENT_NAME]);
+      List<String> temp = doc[DB_STUDENT_ROLL].toString().split("/");
+      prefs.setString(KEY_BATCH, temp[temp.length-1]);
+    }).catchError((_){
+      isError = true;
+    });
+
+    return !isError;
   }
 }

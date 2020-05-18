@@ -4,9 +4,10 @@ import 'package:attendancesystem/mock/NotificationMockData.dart';
 import 'package:attendancesystem/mock/RegisteredPaperMockData.dart';
 import 'package:attendancesystem/model/Attendance.dart';
 import 'package:attendancesystem/model/ClassTiming.dart';
-import 'package:attendancesystem/model/Notification.dart';
+import 'package:attendancesystem/model/StudentNotification.dart';
 import 'package:attendancesystem/model/RegisteredPaper.dart';
 import 'package:attendancesystem/network/FetchAttendance.dart';
+import 'package:attendancesystem/network/FetchClassTiming.dart';
 import 'package:attendancesystem/network/FetchNotification.dart';
 import 'package:attendancesystem/network/FetchRegisteredPaper.dart';
 
@@ -62,8 +63,7 @@ class Injector {
       case Flavor.MOCK:
         return ClassTimingMockData();
       default:
-        //TODO
-        return null;
+        return FetchClassTiming();
     }
   }
 }
