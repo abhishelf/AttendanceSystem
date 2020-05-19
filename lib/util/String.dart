@@ -1,5 +1,6 @@
 const String APP_NAME = "Attendance System";
 
+const String APP_UNDER_DEVELOPMENT = "No Info Availabe, App Is Under Development !!!";
 const String SPLIT_POINT = "#";
 
 //View Text
@@ -14,6 +15,14 @@ const String DO_NOT_HAVE_ACCOUNT = "Don't have an account? ";
 const String CONTACT_YOUR_COLLEGE = "Contact College";
 const String HINT_EMAIL = "Enter Email";
 const String HINT_PASSWORD = "Enter Password";
+
+const List<String> APP_BAR_TITLE = [
+  "Attendance",
+  "Registered Papers",
+  "",
+  "Contact",
+  "Notification",
+];
 
 //Error
 const String ERROR_NETWORK = "Please Check Your Internet Connection";

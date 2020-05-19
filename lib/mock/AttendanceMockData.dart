@@ -18,7 +18,10 @@ var _attendanceList = <Attendance>[
     "14/3/2016",
     "18/3/2016",
     "19/3/2016",
-    "22/3/2016"
+    "22/3/2016",
+    "23/4/2016",
+    "24/4/2016",
+    "25/4/2016",
   ]),
   Attendance(paperName: "Operating System", absentDate: [
     "15/3/2016",

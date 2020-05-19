@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       color: Colors.white,
       title: APP_NAME,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
         hintColor: Colors.grey,
         buttonColor: Colors.blue,
         cardColor: Colors.white,
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         disabledColor: Colors.grey,
         iconTheme: IconThemeData(
           color: Colors.white,
+          size: 26.0,
         ),
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
