@@ -1,4 +1,4 @@
-const String APP_NAME = "Attendance System";
+const String APP_NAME = "Auto ERP System";
 
 const String APP_UNDER_DEVELOPMENT = "No Info Availabe, App Is Under Development !!!";
 const String SPLIT_POINT = "#";

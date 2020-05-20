@@ -26,9 +26,13 @@ class FetchNotification extends NotificationRepository {
               equalIgnoreCase(notificationId, batch) ||
               equalIgnoreCase(notificationId, branch) ||
               equalIgnoreCase(notificationId, myKey)) {
-            notificationList.add(StudentNotification(
+            notificationList.add(
+              StudentNotification(
                 date: item.data[DB_NOTIFICATION_DATE],
-                text: item.data[DB_NOTIFICATION_TEXT]));
+                url: item.data[DB_NOTIFICATION_TEXT],
+                type: notificationId,
+              ),
+            );
           }
         });
       } catch (error) {

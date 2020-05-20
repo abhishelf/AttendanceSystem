@@ -8,8 +8,8 @@ class RegisteredPaperMockData extends RegisteredPaperRepository {
 }
 
 var _registeredPaperList = <RegisteredPaper>[
-  RegisteredPaper(semester: "3", paperName: ["Math", "Biology", "Java", "OS"]),
-  RegisteredPaper(semester: "4", paperName: ["Economics"]),
-  RegisteredPaper(semester: "5", paperName: ["DBMS"]),
-  RegisteredPaper(semester: "6", paperName: ["PSC"])
+  RegisteredPaper(semester: "Third", paperName: ["Math", "Biology", "Java", "OS", "Data Structure"],marks: ["A ","A+","B ","C ","Ex"]),
+  RegisteredPaper(semester: "Fourth", paperName: ["Economics"],marks: ["Ex"]),
+  RegisteredPaper(semester: "Fifth", paperName: ["DBMS"],marks: ["A+"]),
+  RegisteredPaper(semester: "Sixth", paperName: ["PSC"],marks: ["A "])
 ];

@@ -1,9 +1,10 @@
 class StudentNotification {
 
   String date;
-  String text;
+  String url;
+  String type;
 
-  StudentNotification({this.date, this.text});
+  StudentNotification({this.date, this.url, this.type});
 }
 
 abstract class NotificationRepository {
