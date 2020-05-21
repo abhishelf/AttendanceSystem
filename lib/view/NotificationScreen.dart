@@ -7,16 +7,15 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class NotificationScreen extends StatefulWidget {
-
   final List<StudentNotification> notification;
-  NotificationScreen({Key key,this.notification}) : super(key:key);
+
+  NotificationScreen({Key key, this.notification}) : super(key: key);
 
   @override
   _NotificationScreenState createState() => _NotificationScreenState();
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
-
   List<StudentNotification> _list;
 
   @override
@@ -29,31 +28,37 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridView.count(
-        padding: EdgeInsets.only(top: 16.0,bottom: 48.0,left: 16.0,right: 16.0,),
+        padding: EdgeInsets.only(
+          top: 16.0,
+          bottom: 48.0,
+          left: 16.0,
+          right: 16.0,
+        ),
         mainAxisSpacing: 28.0,
         crossAxisSpacing: 22.0,
         childAspectRatio: 1.1,
         shrinkWrap: true,
         crossAxisCount: 2,
-        children: List.generate(_list.length, (index){
+        children: List.generate(_list.length, (index) {
           return Container(
             decoration: BoxDecoration(
-              border: Border.all( color: listColor[index%listColor.length],width: 0.4),
+              border: Border.all(color: getRandomColor(index), width: 0.4),
             ),
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
                 Image(
-                  image:  Injector.getFlavor() == Flavor.MOCK ? AssetImage(_list[index].url):NetworkImage(_list[index].url),
+                  image: Injector.getFlavor() == Flavor.MOCK
+                      ? AssetImage(_list[index].url)
+                      : NetworkImage(_list[index].url),
                   fit: BoxFit.cover,
-                  loadingBuilder: (context, child, loading){
-                    if(loading == null) return child;
+                  loadingBuilder: (context, child, loading) {
+                    if (loading == null) return child;
                     return Center(
-                      child: SpinKitCircle(
-                        color: listColor[index%listColor.length],
-                        size: 22.0,
-                      )
-                    );
+                        child: SpinKitCircle(
+                      color: getRandomColor(index),
+                      size: 22.0,
+                    ));
                   },
                 ),
                 Column(
@@ -62,12 +67,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     Container(
                       height: 40.0,
                       width: double.infinity,
-                      padding: EdgeInsets.only(right: 8.0,bottom: 4.0),
-                      color: listColor[index%listColor.length].withOpacity(0.5),
+                      padding: EdgeInsets.only(right: 8.0, bottom: 4.0),
+                      color: getRandomColor(index).withOpacity(0.5),
                       child: Align(
                         alignment: Alignment.bottomRight,
                         child: Text(
-                            _list[index].date,
+                          _list[index].date,
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,

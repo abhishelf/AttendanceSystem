@@ -40,7 +40,7 @@ class _RegisteredPaperScreenState extends State<RegisteredPaperScreen> {
               decoration: BoxDecoration(
                 border: Border(
                   left: BorderSide(
-                    color: listColor[index % listColor.length],
+                    color: getRandomColor(index),
                     width: 6.0,
                     style: BorderStyle.solid,
                   ),
@@ -54,7 +54,7 @@ class _RegisteredPaperScreenState extends State<RegisteredPaperScreen> {
                   title: Text(
                     _list[index].semester,
                     style: TextStyle(
-                      color: listColor[index % listColor.length],
+                      color: getRandomColor(index),
                       fontSize: 18.0,
                     ),
                   ),

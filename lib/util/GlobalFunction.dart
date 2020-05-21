@@ -1,7 +1,9 @@
 import 'package:attendancesystem/util/String.dart';
 import 'package:flutter/material.dart';
 
-List<Color> listColor = [
+import 'dart:math';
+
+List<Color> _listColor = [
   Colors.lightBlue,
   Colors.blueGrey,
   Colors.brown,
@@ -9,7 +11,12 @@ List<Color> listColor = [
   Colors.purple,
 ];
 
+Color getRandomColor(int index){
+  return _listColor[index%_listColor.length];
+}
+
 bool equalIgnoreCase(String str1, String str2) {
+  if(str1 == null || str2 == null) return false;
   return str1.toLowerCase() == str2.toLowerCase();
 }
 
@@ -29,6 +36,11 @@ Map<String, String> getCurrentTiming() {
   map['day'] = weekDay;
 
   return map;
+}
+
+int getCurrentTimeInMs() {
+  var now = DateTime.now();
+  return now.millisecondsSinceEpoch;
 }
 
 int sortComparator(String a, String b){

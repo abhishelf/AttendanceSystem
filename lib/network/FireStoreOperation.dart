@@ -6,27 +6,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class FireStoreOperationInterface {
-  Future<bool> uploadQuery(String query, String rollNo);
+  Future<bool> uploadQuery(String related, String query, String additional);
 
-  Future<bool> updateAttendance();
+  Future<bool> updateAttendance(ClassTiming className, String date);
 
   Future<bool> fetchAndSaveProfile(String email);
 }
 
 class FireStoreOperation implements FireStoreOperationInterface {
-  Future<ClassTiming> _getClassName(String day, String time) async {
-    DatabaseHelper databaseHelper = DatabaseHelper();
-    var className = await databaseHelper.getTiming(day, time);
-    return className;
-  }
 
   @override
-  Future<bool> updateAttendance() async {
+  Future<bool> updateAttendance(ClassTiming className, String date) async {
     try {
-      Map<String, String> map = getCurrentTiming();
-
-      ClassTiming className = await _getClassName(map['day'], map['time']);
-
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       String batch = sharedPreferences.getString(KEY_BATCH);
@@ -39,7 +30,7 @@ class FireStoreOperation implements FireStoreOperationInterface {
           .document(myKey)
           .updateData({
             className.paper: {
-              map['date']: FieldValue.arrayUnion([rollNo]),
+              date: FieldValue.arrayUnion([rollNo]),
             },
           },
       );
@@ -51,14 +42,20 @@ class FireStoreOperation implements FireStoreOperationInterface {
   }
 
   @override
-  Future<bool> uploadQuery(String query, String rollNo) async {
+  Future<bool> uploadQuery(String related, String query, String additional) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String rollNo = prefs.getString(DB_STUDENT_ROLL);
+
     String date = getCurrentTiming()['date'];
+
 
     try {
       await Firestore.instance.collection(COLLECTION_QUERY).add({
         'query': query,
         'roll': rollNo,
         'date': date,
+        'related': related,
+        'additional': additional,
       });
     } catch (_) {
       return false;

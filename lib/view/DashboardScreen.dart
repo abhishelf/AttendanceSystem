@@ -38,7 +38,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           return ExpansionTile(
             initiallyExpanded: index == 0 ? true : false,
             leading: CircleAvatar(
-              backgroundColor: listColor[index % listColor.length],
+              backgroundColor: getRandomColor(index),
               child: Center(
                 child: Text(
                   _list[index].paperName[0],

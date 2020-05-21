@@ -67,6 +67,7 @@ class DatabaseHelper {
 
   Future<ClassTiming> getTiming(String day, String time) async {
     var timing = await getTimingMapList(day, time);
+    if(timing == null) return null;
 
     List<ClassTiming> cartList = List<ClassTiming>();
     for (int i = 0; i < timing.length; i++) {
